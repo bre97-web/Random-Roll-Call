@@ -4,6 +4,11 @@
             <button @click="list.shuffle()">Shuffle</button>
             <button @click="start()">Random</button>
             <button @click="end()">Stop</button>
+            
+            <select name="mode" v-model="mode">
+                <option value="linear">Linear</option>
+                <option value="non-linear">Non-Linear</option>
+            </select>
         </header>
         
         <main>
@@ -22,7 +27,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, reactive } from 'vue';
 
 import List from '../components/list.vue'
 import { useList } from '../hooks/useList'
@@ -36,6 +41,10 @@ const random = useRandom()
 random.defineRange(0, list.value().length - 1)
 
 var timer
+var settings = reactive(JSON.parse(localStorage.getItem('settings')) || {
+    delayShowResult: 1000,
+    delayNext: 250,
+})
 var mode = 'linear'
 
 function start() {
@@ -56,7 +65,7 @@ function start() {
         }
     }
 
-    timer = setInterval(fn, 100)
+    timer = setInterval(fn, settings.delayNext)
 }
 
 function end() {
@@ -78,7 +87,7 @@ function end() {
             index.count ++
         }
 
-    }, 100)
+    }, settings.delayShowResult)
 }
 
 

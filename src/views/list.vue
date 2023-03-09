@@ -22,10 +22,6 @@ import { useList } from '../hooks/useList'
 const list = useList()
 
 var key = ref('')
-
-watch(list.value(), () => {
-    console.log("Changed");
-})
 </script>
 
 <style scoped>
