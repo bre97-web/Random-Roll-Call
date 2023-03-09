@@ -11,11 +11,13 @@
 <script setup>
 import { reactive, watch } from 'vue'
 
+/**
+ * 读取本地的settings信息，提供了一个默认值。
+ */
 var settings = reactive(JSON.parse(localStorage.getItem('settings')) || {
     delayShowResult: 1000,
     delayNext: 250,
 })
-
 watch(settings, () => {
     localStorage.setItem('settings', JSON.stringify(settings))
 })

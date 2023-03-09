@@ -1,12 +1,9 @@
 import {
-    ref, reactive
+    reactive
 } from 'vue'
 
-
-var id = 0
-
 /**
- * list是保存了所有需要随机出结果的数组
+ * list保存了需要被随机的元素。
  */
 var list = reactive(
     {
@@ -21,13 +18,23 @@ var list = reactive(
     }
 )
 
-
 function useList() {
-    
-    var get = () => list
-    var value = () => list.value
+
     /**
-     * 添加元素到list
+     * 
+     * @returns 得到一个响应式的list对象。
+     */
+    var get = () => list
+
+    /**
+     * 
+     * @returns 得到响应式的list对象的.value数组。
+     */
+    var value = () => list.value
+
+    /**
+     * 传递一个keyWord，对keyWord进行分割，将分割后的元素添加到list。
+     * @param {String} keyWord 需要被添加的字符串。
      */
     var set = (keyWord) => {
         var persons = keyWord.split(/[,_|-]/).filter(e => e != null && e !='')
@@ -36,11 +43,16 @@ function useList() {
             list.value.push(e)
         }   
     }
+
+    /**
+     * 
+     * @param {Object} e 需要被移除的元素。
+     */
     var remove = (e) => {
         list.value = list.value.filter(element => element !== e)
     }
     /**
-     * 洗牌，打乱list中的元素顺序
+     * 打乱list中的元素顺序。
      */
     var shuffle = () => {
         var len = list.value.length

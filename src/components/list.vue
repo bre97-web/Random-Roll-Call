@@ -7,8 +7,15 @@
 <script setup>
 import { useList } from '../hooks/useList'
 import { useRandom } from '../hooks/useRandom'
+
+/**
+ * 用于显示聚焦环。
+ */
 const random = useRandom()
 
+/**
+ * 用于在li中显示所有的元素
+ */
 const list = useList()
 </script>
 

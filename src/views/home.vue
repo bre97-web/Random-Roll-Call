@@ -33,20 +33,45 @@ import List from '../components/list.vue'
 import { useList } from '../hooks/useList'
 import { useRandom } from '../hooks/useRandom'
 
+/**
+ * list用于在li中显示所有的元素。
+ */
 const list = useList()
 
+/**
+ * saveList保存了已经被选中的元素，带有计数count和名称name。
+ */
 var saveList = ref([])
 
+/**
+ * 随机一个0到list大小的随机数。
+ */
 const random = useRandom()
 random.defineRange(0, list.value().length - 1)
 
+/**
+ * 提供两种模式，由用户选择。
+ * linear
+ * non-linear
+ */
+var mode = 'linear'
+
+/**
+ * 用来保存计时器。
+ */
 var timer
+
+/**
+ * 读取本地的settings信息，提供了一个默认值。
+ */
 var settings = reactive(JSON.parse(localStorage.getItem('settings')) || {
     delayShowResult: 1000,
     delayNext: 250,
 })
-var mode = 'linear'
 
+/**
+ * 开始随机。
+ */
 function start() {
     
     if(mode === 'linear') {   
@@ -67,7 +92,9 @@ function start() {
 
     timer = setInterval(fn, settings.delayNext)
 }
-
+/**
+ * 结束随机。
+ */
 function end() {
     setTimeout(() => {
         clearInterval(timer)

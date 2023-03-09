@@ -23,7 +23,7 @@ function useRandom() {
 
     /**
      * 
-     * @returns 得到一个于上次随机不相同的随机数。
+     * @returns 得到一个与上次随机不相同的随机数。
      */
     var get = () => {
         var tmp = undefined
@@ -42,6 +42,11 @@ function useRandom() {
         
         return last.value
     }
+
+    /**
+     * 
+     * @returns 得到当前的随机结果。
+     */
     var getLast = () => last.value
 
     /**
