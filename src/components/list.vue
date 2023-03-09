@@ -1,6 +1,6 @@
 <template>
     <ul>
-        <li v-for="e, index in list.value()">{{ e + index }} {{ index == random.getLast() }}</li>
+        <li v-for="e, index in list.value()">{{ e }}</li>
     </ul>
 </template>
 

@@ -17,9 +17,6 @@
 </template>
 
 <script setup>
-import { useList } from '../hooks/useList'
-
-const list = useList()
 
 </script>
 
