@@ -5,13 +5,18 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "md": "rollup -p @rollup/plugin-node-resolve ./src/material-web.js > ./src/bundle.js"
   },
   "dependencies": {
-    "vue": "^3.2.45"
+    "@material/web": "^1.0.0-pre.4",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "material-icons": "^1.13.2",
+    "rollup": "^3.18.0",
+    "vue": "^3.2.45",
+    "vue-router": "^4.1.6"
   },
   "devDependencies": {
-    "express": "^4.18.2",
     "@vitejs/plugin-vue": "^4.0.0",
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.21",
