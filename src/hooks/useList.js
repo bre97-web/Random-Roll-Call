@@ -1,5 +1,5 @@
 import {
-    reactive
+    reactive, watch
 } from 'vue'
 
 /**
@@ -7,7 +7,7 @@ import {
  */
 var list = reactive(
     {
-        value: [
+        value: JSON.parse(localStorage.getItem('persons')) || [
             '刘一',
             '陈二',
             '张三',
@@ -17,6 +17,10 @@ var list = reactive(
         ]
     }
 )
+
+watch(list, () => {
+    localStorage.setItem('persons', JSON.stringify(list.value))
+})
 
 function useList() {
 
