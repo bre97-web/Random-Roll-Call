@@ -1,17 +1,14 @@
 <template>
     <div>
-        <header>
-            <button @click="list.shuffle()">Shuffle</button>
-            <button @click="start()">Random</button>
-            <button @click="end()">Stop</button>
+        <header class="flex gap-2 items-center py-2 md:justify-center">
+            <md-filled-button label="Random" @click="start()"></md-filled-button>
+            <md-text-button label="Stop" @click="end()"></md-text-button>
+            <md-text-button label="Shuffle" @click="list.shuffle()"></md-text-button>
             
-            <select name="mode" v-model="mode">
-                <option value="linear">Linear</option>
-                <option value="non-linear">Non-Linear</option>
-            </select>
+            
         </header>
         
-        <main>
+        <main class="flex flex-col gap-2">
             <List></List>
             
             <ul v-if="saveList.length != 0" class="border rounded-md p-4">
@@ -54,7 +51,7 @@ random.defineRange(0, list.value().length - 1)
  * linear
  * non-linear
  */
-var mode = 'linear'
+var mode = false
 
 /**
  * 用来保存计时器。
@@ -67,6 +64,7 @@ var timer
 var settings = reactive(JSON.parse(localStorage.getItem('settings')) || {
     delayShowResult: 1000,
     delayNext: 250,
+    linear: true,
 })
 
 /**
@@ -74,7 +72,7 @@ var settings = reactive(JSON.parse(localStorage.getItem('settings')) || {
  */
 function start() {
     
-    if(mode === 'linear') {   
+    if(settings.linear === true) {   
         var index = 0
         var fn = () => {
             random.set(index++)
@@ -84,7 +82,7 @@ function start() {
             }
 
         }
-    } else if(mode === 'non-linear') {
+    } else if(settings.linear === false) {
         var fn = () => {
             random.get()
         }
