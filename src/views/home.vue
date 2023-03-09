@@ -1,22 +1,24 @@
 <template>
     <div>
-        <button @click="list.shuffle()">Shuffle</button>
-        <button @click="start()">Random</button>
-        <button @click="end()">Stop</button>
+        <header>
+            <button @click="list.shuffle()">Shuffle</button>
+            <button @click="start()">Random</button>
+            <button @click="end()">Stop</button>
+        </header>
+        
+        <main>
+            <List></List>
+            
+            <ul v-if="saveList.length != 0" class="border rounded-md p-4">
+                <li v-for="e in saveList" class="hover:shadow hover:bg-gray-200 px-4 py-2 rounded-md">
+                    <p class="flex justify-between">
+                        <h1>{{ e.name }}</h1>
+                        <h2>{{ e.count }}</h2>
+                    </p>
+                </li>
+            </ul>
+        </main>
     </div>
-
-    <main class="px-8">
-        <List></List>
-
-        <ul class="border rounded-md p-4">
-            <li v-for="e in saveList" class="hover:shadow hover:bg-gray-200 px-4 py-2 rounded-md">
-                <p class="flex justify-between">
-                    <h1>{{ e.name }}</h1>
-                    <h2>{{ e.count }}</h2>
-                </p>
-            </li>
-        </ul>
-    </main>
 </template>
 
 <script setup>
@@ -67,7 +69,6 @@ function end() {
                 index = e
             }
         })
-        console.log(index);
         if(index == -1) {
             saveList.value.push({
                 name: list.value()[random.getLast()],
