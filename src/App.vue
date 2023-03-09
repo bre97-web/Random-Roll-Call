@@ -1,5 +1,5 @@
 <script setup>
-import Header from './components/header.vue'
+import Nav from './components/nav.vue'
 
 
 </script>
@@ -7,9 +7,9 @@ import Header from './components/header.vue'
 <template>
     <div>
 
-        <Header></Header>
+        <Nav></Nav>
         
-        <main class="px-8">
+        <main class="px-8 py-4 max-w-lg mx-auto">
             <router-view></router-view>
         </main>
         

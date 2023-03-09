@@ -1,10 +1,11 @@
 <template>
     <div class="flex flex-col gap-2">
-        <label>停止后延迟显示结果</label>
-        <input type="text" v-model.number="settings.delayShowResult">
+        <md-filled-text-field label="停止后延迟显示结果" type="text" v-model.number="settings.delayShowResult"></md-filled-text-field>
 
-        <label>随机间隔</label>
-        <input type="text" v-model.number="settings.delayNext">
+        <md-filled-text-field label="随机间隔" type="text" v-model.number="settings.delayNext"></md-filled-text-field>
+
+        <label>随机时是否连续</label>
+        <md-switch name="mode" @click="settings.linear = !settings.linear"></md-switch>
     </div>
 </template>
 
@@ -17,6 +18,7 @@ import { reactive, watch } from 'vue'
 var settings = reactive(JSON.parse(localStorage.getItem('settings')) || {
     delayShowResult: 1000,
     delayNext: 250,
+    linear: true,
 })
 watch(settings, () => {
     localStorage.setItem('settings', JSON.stringify(settings))
